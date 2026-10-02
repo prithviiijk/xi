@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Pet Shop – Karkala | Moodbidri | Mangalore</title>
+<style>
+:root{--bg:#f4f7fa;--card:#fff;--ink:#24282c;--mut:#6b7480;--blue:#0aa5ee;--gold:#f2b90f;--red:#e5484d;--line:#e2e8ee;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171a1d;--card:#22272c;--ink:#f1f4f7;--mut:#9aa5b1;--line:#333a41}}
+:root[data-theme="dark"]{--bg:#171a1d;--card:#22272c;--ink:#f1f4f7;--mut:#9aa5b1;--line:#333a41}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Palatino Linotype',Palatino,'Book Antiqua','URW Palladio L',serif;line-height:1.5}
+header{background:#24282c;color:#fff;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.bar{max-width:1100px;margin:auto;display:flex;align-items:center;gap:12px;padding:10px 16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+.brand svg{width:44px;height:44px}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav button{background:none;border:0;color:#cfd6dd;font:600 14px 'Palatino Linotype',Palatino,'Book Antiqua',serif;padding:8px 12px;border-radius:8px;cursor:pointer}
+nav button.on,nav button:hover{background:var(--blue);color:#fff}
+main{max-width:1100px;margin:auto;padding:16px}
+.hero{background:linear-gradient(120deg,#fff,#e8f6fe);border-radius:16px;padding:28px;margin-bottom:18px;color:#24282c}
+.hero small{color:#8a929b;font-size:26px;font-weight:600}
+.hero h1{margin:0;font-size:clamp(30px,6vw,52px);line-height:1.1;font-weight:800}
+.b{color:var(--blue)}.g{color:var(--gold)}
+.hero p{margin:8px 0 0;color:#5a626b}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px}
+.tabs button{white-space:nowrap;border:1.5px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;font:600 14px 'Palatino Linotype',Palatino,'Book Antiqua',serif;cursor:pointer}
+.tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+select,input,textarea{font:500 14px 'Palatino Linotype',Palatino,'Book Antiqua',serif;padding:9px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);max-width:100%}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.ph{position:relative;height:170px;background:#e8f6fe;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.em{font-size:76px}
+.sold{position:absolute;left:0;top:0;bottom:0;width:34px;background:var(--red);color:#fff;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center;font-weight:800;letter-spacing:5px;font-size:14px}
+.ci{padding:12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.ci h3{margin:0;font-size:16px}
+.mut{color:var(--mut);font-size:13px}
+.tag{display:inline-block;background:var(--bg);border-radius:6px;padding:1px 8px;font-size:12px;font-weight:600;margin-right:4px}
+.price{font-size:20px;font-weight:800;color:var(--blue)}
+.btn{border:0;background:var(--blue);color:#fff;font:700 14px 'Palatino Linotype',Palatino,'Book Antiqua',serif;padding:10px 14px;border-radius:10px;cursor:pointer}
+.btn.gold{background:var(--gold);color:#24282c}.btn.red{background:var(--red)}.btn.ghost{background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.coin{background:var(--gold);color:#24282c;font-weight:700;padding:5px 12px;border-radius:999px;font-size:13px}
+#modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;z-index:20;padding:12px}
+#modal.on{display:flex}
+.mb{background:var(--card);border-radius:16px;padding:20px;width:min(460px,100%);max-height:90vh;overflow:auto}
+.mb h2{margin:0 0 8px}
+.opt{display:flex;gap:8px;align-items:center;padding:9px 10px;border:1.5px solid var(--line);border-radius:10px;margin:6px 0;cursor:pointer}
+.opt.dis{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1;min-width:120px}
+.demo{background:#fff6d6;color:#5b4700;border-radius:8px;padding:8px 12px;font-size:12.5px;margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px;border-bottom:1px solid var(--line);text-align:left}
+.tbl{overflow-x:auto}
+footer{background:#24282c;color:#cfd6dd;margin-top:30px;padding:24px 16px;font-size:14px}
+footer div{max-width:1100px;margin:auto}
+footer a{color:var(--gold)}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:#24282c;color:#fff;padding:10px 18px;border-radius:999px;display:none;z-index:30;font-size:14px}
+.link{background:none;border:0;color:#6b7480;font:12px 'Palatino Linotype',Palatino,serif;cursor:pointer;text-decoration:underline}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<div class="brand"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#24282c" stroke="#3a4046"/><circle cx="52" cy="44" r="22" fill="#0aa5ee"/><circle cx="53" cy="38" r="4.5" fill="#fff"/><path d="M73 42l11 2-10 5z" fill="#0aa5ee"/><path d="M34 62l-16 13 24-4z" fill="#0aa5ee"/></svg>The Pet Shop</div>
+<nav id="nav"></nav></div></header>
+<main id="app"></main>
+<footer><div>
+<b>The Pet Shop</b> · Branches: Karkala · Moodbidri · Mangalore<br>
+Near Auto Stand, Opp Bus Stand, Karkala City<br>
+📞 <a href="tel:+919686675949">+91 96866 75949</a> (Prashanth K S) · ✉️ <a href="mailto:thepetshopkarkala@gmail.com">thepetshopkarkala@gmail.com</a><br>
+<button class="link" data-a="adminLogin">Staff login</button>
+</div></footer>
+<div id="modal"><div class="mb" id="mb"></div></div>
+<div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inr=n=>'₹'+Number(n).toLocaleString('en-IN');
+const ADMIN_PIN='1234'; // CHANGE THIS
+const CATS=[['dog','Dogs','🐕'],['cat','Cats','🐈'],['bird','Birds','🦜'],['reptile','Reptiles','🦎'],['fish','Fishes','🐠'],['hamster','Hamsters','🐹']];
+const R=[[0,1e3],[1e3,5e3],[5e3,15e3],[15e3,3e4],[3e4,1e12]];
+const RL=['Under ₹1,000','₹1,000 – ₹5,000','₹5,000 – ₹15,000','₹15,000 – ₹30,000','Above ₹30,000'];
+const PG=[['food','Food','🍖'],['toys','Toys','🎾'],['stones','Aquarium Stones','🪨'],['aquarium','Aquariums','🐟'],['roof','Aquarium Roof / Hood','🔲'],['shampoo','Shampoos','🧴'],['bed','Beds','🛏️']];
+const PRODUCTS=[
+['p1','food','Dog Food 3kg',899],['p2','food','Cat Food 1.2kg',549],['p3','food','Bird Seed Mix 1kg',260],['p4','food','Fish Flakes 100g',120],
+['p5','toys','Chew Bone Toy',199],['p6','toys','Cat Feather Wand',149],['p7','stones','Coloured Aquarium Stones 1kg',180],['p8','stones','River Pebbles 2kg',240],
+['p9','aquarium','Aquarium 2ft Glass Tank',2400],['p10','aquarium','Aquarium 3ft with Stand',6500],['p11','roof','Aquarium Roof 2ft (LED)',850],['p12','roof','Aquarium Roof 3ft (LED)',1250],
+['p13','shampoo','Dog Shampoo 200ml',320],['p14','shampoo','Cat Shampoo 200ml',290],['p15','bed','Dog Bed (Medium)',1100],['p16','bed','Cat Bed (Cosy Cave)',950]];
+const pg=k=>PG.find(x=>x[0]===k);
+const SEED=[
+['d1','dog','Golden Retriever','Golden Retriever','Male','2 months','Golden',28000,'Vaccinated, playful and family friendly.'],
+['d2','dog','Chocolate Lab','Labrador','Female','3 months','Chocolate',22000,'Healthy, dewormed, very friendly.'],
+['d3','dog','Havanese Pup','Havanese','Male','2 months','White',35000,'Small, silky coat, great companion.'],
+['c1','cat','Persian Kitten','Persian','Female','3 months','White',12000,'Litter trained, fluffy coat.'],
+['c2','cat','Tabby Kitten','Domestic Shorthair','Not known','2 months','Grey',3500,'Active and healthy.'],
+['b1','bird','Budgies (pair)','Budgerigar','Not known','6 months','Blue',900,'Colourful and cheerful pair.'],
+['b2','bird','Cockatiel','Cockatiel','Male','8 months','Yellow',4500,'Hand tame, whistles.'],
+['r1','reptile','Bearded Dragon','Bearded Dragon','Male','1 year','Brown',9500,'Calm, eats greens and insects.'],
+['r2','reptile','Red-eared Slider','Turtle','Not known','6 months','Green',1800,'Comes with feeding guide.'],
+['f1','fish','Goldfish','Oranda','Not known','4 months','Orange',350,'Hardy, good for beginners.'],
+['f2','fish','Betta Fish','Betta','Male','3 months','Blue',450,'Vivid fins, keep alone.'],
+['h1','hamster','Syrian Hamster','Syrian','Female','2 months','Golden',600,'Tame and curious.'],
+['h2','hamster','Dwarf Hamster','Roborovski','Male','2 months','Grey',500,'Tiny and very fast.']
+].map(a=>({id:a[0],cat:a[1],name:a[2],breed:a[3],gender:a[4],age:a[5],color:a[6],price:a[7],desc:a[8],photo:'',sold:false}));
+let S=null;try{S=JSON.parse(localStorage.getItem('tps1'))}catch(e){}
+S=S||{pets:SEED,orders:[],coins:0,cart:{}};
+const save=()=>{try{localStorage.setItem('tps1',JSON.stringify(S))}catch(e){toast('Storage full – use a smaller photo')}};
+const V={tab:'pets',cat:'dog',price:'',color:'',gender:'',sort:'',pcat:'all',admin:false,edit:null};
+let draftPhoto='';
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2600)}
+function modal(h){$('#mb').innerHTML=h;$('#modal').classList.add('on')}
+function closeM(){$('#modal').classList.remove('on')}
+const emoji=c=>(CATS.find(x=>x[0]===c)||[0,0,'🐾'])[2];
+const cartCount=()=>Object.values(S.cart).reduce((a,b)=>a+b,0);
+const cartTotal=()=>Object.entries(S.cart).reduce((a,[id,q])=>a+q*(PRODUCTS.find(p=>p[0]===id)||[0,0,0,0])[3],0);
+
+function render(){
+ const tabs=[['pets','Pets'],['products','Products'],['cart','Cart ('+cartCount()+')']];
+ if(V.admin)tabs.push(['admin','Admin']);
+ $('#nav').innerHTML=tabs.map(t=>`<button data-a="tab" data-i="${t[0]}" class="${V.tab===t[0]?'on':''}">${t[1]}</button>`).join('')+`<span class="coin">🪙 ${S.coins} coins</span>`;
+ $('#app').innerHTML=({pets:pets,products:products,cart:cart,admin:admin})[V.tab]();
+}
+function pets(){
+ const list=S.pets.filter(p=>p.cat===V.cat);
+ const colors=[...new Set(list.map(p=>p.color))];
+ let f=list.filter(p=>(V.price===''||(p.price>=R[V.price][0]&&p.price<R[V.price][1]))&&(!V.color||p.color===V.color)&&(!V.gender||p.gender===V.gender));
+ if(V.sort==='lo')f.sort((a,b)=>a.price-b.price);if(V.sort==='hi')f.sort((a,b)=>b.price-a.price);
+ return `<div class="hero"><small>Choose your</small><h1><span class="b">Best</span> <span class="g">Companion</span> <small>with us.</small></h1><p>Dogs · Cats · Birds · Reptiles · Fishes · Hamsters – book yours with just 20% online.</p></div>
+ <div class="demo">Demo mode: payments below are simulated. Real Google Pay / card payments need a payment gateway set up on a server.</div>
+ <div class="tabs">${CATS.map(c=>`<button data-a="cat" data-i="${c[0]}" class="${V.cat===c[0]?'on':''}">${c[2]} ${c[1]}</button>`).join('')}</div>
+ <div class="filters">
+ <select data-f="price"><option value="">Any price</option>${RL.map((l,i)=>`<option value="${i}" ${V.price===String(i)?'selected':''}>${l}</option>`).join('')}</select>
+ <select data-f="color"><option value="">Any colour</option>${colors.map(c=>`<option ${V.color===c?'selected':''}>${esc(c)}</option>`).join('')}</select>
+ <select data-f="gender"><option value="">Any gender</option>${['Male','Female','Not known'].map(g=>`<option ${V.gender===g?'selected':''}>${g}</option>`).join('')}</select>
+ <select data-f="sort"><option value="">Sort</option><option value="lo" ${V.sort==='lo'?'selected':''}>Price: low to high</option><option value="hi" ${V.sort==='hi'?'selected':''}>Price: high to low</option></select></div>
+ <div class="grid">${f.map(petCard).join('')||'<p class="mut">No pets match these filters.</p>'}</div>`;
+}
+function petCard(p){
+ return `<div class="card"><div class="ph">${p.photo?`<img src="${p.photo}" alt="${esc(p.name)}">`:`<span class="em">${emoji(p.cat)}</span>`}${p.sold?'<b class="sold">SOLD</b>':''}</div>
+ <div class="ci"><h3>${esc(p.name)}</h3><div class="mut">${esc(p.breed)} · ${esc(p.age)}</div>
+ <div><span class="tag">${esc(p.gender)}</span><span class="tag">${esc(p.color)}</span></div>
+ <div class="mut">${esc(p.desc)}</div><div class="price">${inr(p.price)}</div>
+ <button class="btn" data-a="book" data-i="${p.id}" ${p.sold?'disabled':''}>${p.sold?'Sold':'Book now – pay '+inr(Math.ceil(p.price*.2))}</button></div></div>`;
+}
+function products(){
+ const l=PRODUCTS.filter(p=>V.pcat==='all'||p[1]===V.pcat);
+ return `<div class="tabs"><button data-a="pcat" data-i="all" class="${V.pcat==='all'?'on':''}">All</button>${PG.map(g=>`<button data-a="pcat" data-i="${g[0]}" class="${V.pcat===g[0]?'on':''}">${g[2]} ${g[1]}</button>`).join('')}</div>
+ <div class="grid">${l.map(p=>`<div class="card"><div class="ph"><span class="em">${pg(p[1])[2]}</span></div><div class="ci"><h3>${p[2]}</h3><div class="mut">${pg(p[1])[1]}</div><div class="price">${inr(p[3])}</div><button class="btn gold" data-a="add" data-i="${p[0]}">Add to cart</button></div></div>`).join('')}</div>`;
+}
+function cart(){
+ const it=Object.entries(S.cart);
+ if(!it.length)return '<h2>Your cart is empty</h2><p class="mut">Browse Products to add food, toys, aquarium items and more.</p>';
+ return `<h2>Your cart</h2><div class="tbl"><table>${it.map(([id,q])=>{const p=PRODUCTS.find(x=>x[0]===id);return `<tr><td>${p[2]}</td><td>${inr(p[3])}</td><td><button class="btn ghost" data-a="dec" data-i="${id}">−</button> ${q} <button class="btn ghost" data-a="add" data-i="${id}">+</button></td><td>${inr(q*p[3])}</td></tr>`}).join('')}</table></div>
+ <h3>Total: ${inr(cartTotal())}</h3><p class="mut">Earn 🪙 10 PetShop coins on every ₹100 paid online. 1 coin = ₹1, usable on products.</p><button class="btn" data-a="checkout">Checkout</button>`;
+}
+function payModal(o){
+ const m=[];if(o.cod)m.push(['cod','Cash on Delivery']);m.push(['gpay','Google Pay'],['credit','Credit Card'],['debit','Debit Card']);
+ if(o.coin)m.push(['coin','PetShop Coin (balance '+S.coins+')',S.coins<o.amount]);
+ window._pay=o;
+ modal(`<h2>${o.title}</h2><p>Amount to pay now: <b class="price">${inr(o.amount)}</b></p>
+ ${o.note?`<p class="mut">${o.note}</p>`:''}
+ ${m.map((x,i)=>`<label class="opt ${x[2]?'dis':''}"><input type="radio" name="pm" value="${x[0]}" ${x[2]?'disabled':''} ${i===0?'checked':''}> ${x[1]}</label>`).join('')}
+ ${o.cod?'':'<p class="mut">Cash on Delivery is not available for pet bookings.</p>'}
+ <div id="cf" style="display:none"><input id="cn" placeholder="Card number" inputmode="numeric" maxlength="19" style="width:100%;margin-bottom:6px"><div class="row"><input id="ce" placeholder="MM/YY" maxlength="5"><input id="cv" placeholder="CVV" type="password" maxlength="4"></div></div>
+ <div class="row" style="margin-top:12px"><button class="btn ghost" data-a="close">Cancel</button><button class="btn" data-a="pay">Pay &amp; confirm</button></div>`);
+ syncPM();
+}
+function syncPM(){const v=(document.querySelector('input[name=pm]:checked')||{}).value;const c=$('#cf');if(c)c.style.display=(v==='credit'||v==='debit')?'block':'none'}
+function done(method,amount,desc,type){
+ let earn=0;
+ if(method==='coin')S.coins-=amount;
+ else if(method!=='cod'){earn=Math.floor(amount/100)*10;S.coins+=earn}
+ S.orders.unshift({id:Date.now(),type,desc,amount,method,date:new Date().toLocaleString('en-IN')});
+ save();closeM();render();
+ toast(earn?'Payment successful! You earned 🪙 '+earn+' coins':'Order confirmed!');
+}
+const A={
+ tab(i){V.tab=i;render();scrollTo(0,0)},
+ cat(i){V.cat=i;V.color='';render()},
+ pcat(i){V.pcat=i;render()},
+ close(){closeM()},
+ book(i){const p=S.pets.find(x=>x.id===i);if(!p||p.sold)return;const a=Math.ceil(p.price*.2);
+  payModal({title:'Book '+esc(p.name),amount:a,cod:false,coin:false,kind:'book',pid:i,note:'Pay 20% of '+inr(p.price)+' to reserve. Balance '+inr(p.price-a)+' is payable at the shop.'})},
+ add(i){S.cart[i]=(S.cart[i]||0)+1;save();render();toast('Added to cart')},
+ dec(i){if(--S.cart[i]<=0)delete S.cart[i];save();render()},
+ checkout(){const t=cartTotal();payModal({title:'Pay for your order',amount:t,cod:true,coin:true,kind:'order'})},
+ pay(){
+  const o=window._pay,m=document.querySelector('input[name=pm]:checked').value;
+  if(m==='credit'||m==='debit'){
+   if($('#cn').value.replace(/\s/g,'').length<12||!/^\d\d\/\d\d$/.test($('#ce').value)||$('#cv').value.length<3)return toast('Please enter valid card details');
+  }
+  if(o.kind==='book'){const p=S.pets.find(x=>x.id===o.pid);p.sold=true;done(m,o.amount,'Booking: '+p.name,'Pet booking')}
+  else{const d=Object.entries(S.cart).map(([id,q])=>q+'× '+PRODUCTS.find(x=>x[0]===id)[2]).join(', ');S.cart={};done(m,o.amount,d,'Product order')}
+ },
+ adminLogin(){modal('<h2>Staff login</h2><input id="pin" type="password" placeholder="Admin PIN" style="width:100%"><div class="row" style="margin-top:12px"><button class="btn ghost" data-a="close">Cancel</button><button class="btn" data-a="pinok">Login</button></div>')},
+ pinok(){if($('#pin').value===ADMIN_PIN){V.admin=true;V.tab='admin';closeM();render()}else toast('Wrong PIN')},
+ logout(){V.admin=false;V.tab='pets';render()},
+ newpet(){V.edit='new';draftPhoto='';render()},
+ editpet(i){V.edit=i;draftPhoto='';render()},
+ cancel(){V.edit=null;render()},
+ del(i){if(confirm('Delete this pet?')){S.pets=S.pets.filter(p=>p.id!==i);save();render()}},
+ flip(i){const p=S.pets.find(x=>x.id===i);p.sold=!p.sold;save();render()},
+ savepet(){
+  const g=id=>$('#'+id).value.trim(),price=+g('f_price');
+  if(!g('f_name')||!price)return toast('Name and price are required');
+  const cur=V.edit==='new'?null:S.pets.find(p=>p.id===V.edit);
+  const d={id:cur?cur.id:'n'+Date.now(),cat:g('f_cat'),name:g('f_name'),breed:g('f_breed'),gender:g('f_gender'),age:g('f_age'),color:g('f_color'),price,desc:g('f_desc'),photo:draftPhoto||(cur?cur.photo:''),sold:cur?cur.sold:false};
+  if(cur)Object.assign(cur,d);else S.pets.unshift(d);
+  save();V.edit=null;render();toast('Pet saved');
+ }
+};
+function admin(){
+ if(!V.admin)return '';
+ const e=V.edit==='new'?{cat:'dog',gender:'Male'}:S.pets.find(p=>p.id===V.edit);
+ const form=e?`<div class="card" style="padding:14px;margin-bottom:14px"><h3>${V.edit==='new'?'Add a pet':'Edit pet'}</h3>
+ <div class="row"><input id="f_name" placeholder="Name / title" value="${esc(e.name)}"><select id="f_cat">${CATS.map(c=>`<option value="${c[0]}" ${e.cat===c[0]?'selected':''}>${c[1]}</option>`).join('')}</select></div>
+ <div class="row" style="margin-top:8px"><input id="f_breed" placeholder="Breed" value="${esc(e.breed)}"><select id="f_gender">${['Male','Female','Not known'].map(g=>`<option ${e.gender===g?'selected':''}>${g}</option>`).join('')}</select></div>
+ <div class="row" style="margin-top:8px"><input id="f_age" placeholder="Age (e.g. 2 months)" value="${esc(e.age)}"><input id="f_color" placeholder="Colour" value="${esc(e.color)}"><input id="f_price" type="number" placeholder="Price ₹" value="${esc(e.price)}"></div>
+ <textarea id="f_desc" placeholder="Description (vaccination, temperament, etc.)" style="width:100%;margin-top:8px" rows="3">${esc(e.desc)}</textarea>
+ <p class="mut" style="margin:8px 0 4px">Photo</p><input type="file" id="ph" accept="image/*">
+ <div class="row" style="margin-top:12px"><button class="btn ghost" data-a="cancel">Cancel</button><button class="btn" data-a="savepet">Save</button></div></div>`:'';
+ return `<div class="row" style="align-items:center;margin-bottom:12px"><h2 style="margin:0">Admin panel</h2><span><button class="btn" data-a="newpet">+ Add pet</button> <button class="btn ghost" data-a="logout">Log out</button></span></div>${form}
+ <div class="tbl"><table><tr><th>Pet</th><th>Category</th><th>Price</th><th>Status</th><th></th></tr>${S.pets.map(p=>`<tr><td>${esc(p.name)}</td><td>${esc(p.cat)}</td><td>${inr(p.price)}</td><td>${p.sold?'Sold':'Available'}</td><td><button class="btn ghost" data-a="editpet" data-i="${p.id}">Edit</button> <button class="btn ghost" data-a="flip" data-i="${p.id}">${p.sold?'Mark available':'Mark sold'}</button> <button class="btn red" data-a="del" data-i="${p.id}">Delete</button></td></tr>`).join('')}</table></div>
+ <h3>Bookings &amp; orders</h3><div class="tbl"><table><tr><th>Date</th><th>Type</th><th>Details</th><th>Paid</th><th>Method</th></tr>${S.orders.map(o=>`<tr><td>${esc(o.date)}</td><td>${esc(o.type)}</td><td>${esc(o.desc)}</td><td>${inr(o.amount)}</td><td>${esc(o.method)}</td></tr>`).join('')||'<tr><td colspan="5" class="mut">No orders yet</td></tr>'}</table></div>`;
+}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t&&A[t.dataset.a])A[t.dataset.a](t.dataset.i);if(e.target.id==='modal')closeM()});
+document.addEventListener('change',e=>{
+ const f=e.target.dataset.f;if(f){V[f]=e.target.value;render();return}
+ if(e.target.name==='pm')syncPM();
+ if(e.target.id==='ph'&&e.target.files[0]){
+  const img=new Image(),r=new FileReader();
+  r.onload=()=>{img.onload=()=>{const c=document.createElement('canvas'),k=Math.min(1,500/img.width);c.width=img.width*k;c.height=img.height*k;c.getContext('2d').drawImage(img,0,0,c.width,c.height);draftPhoto=c.toDataURL('image/jpeg',.75);toast('Photo ready')};img.src=r.result};
+  r.readAsDataURL(e.target.files[0]);
+ }
+});
+render();
+</script>
+</body>
+</html>
